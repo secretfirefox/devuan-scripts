@@ -48,7 +48,7 @@ sudo nano ~/.config/sxhkd/sxhkdrc
 # Add picom to autostart every login
 # Stop the cursor from resetting every login to X's default cursor
 # Fix the proportion of window distributions from 0.52 to 0.50 (manually)
-# Specify the mate-polkit to run every login (assumes MATE install)
+# Specify the gnome-polkit to run every login (assumes Xfce tasksel install)
 
 echo "numlockx &" >> ~/.config/bspwm/bspwmrc
 #echo "pipewire &" >> ~/.config/bspwm/bspwmrc
@@ -56,7 +56,7 @@ echo "numlockx &" >> ~/.config/bspwm/bspwmrc
 #echo "wireplumber &" >> ~/.config/bspwm/bspwmrc
 echo "picom -f -I 0.06 -O 0.06 &" >> ~/.config/bspwm/bspwmrc
 echo "xsetroot -cursor_name left_ptr &" >> ~/.config/bspwm/bspwmrc
-echo "/usr/libexec/polkit-mate-authentication-agent-1 &" >> ~/.config/bspwm/bspwmrc
+echo "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &" >> ~/.config/bspwm/bspwmrc
 sudo nano ~/.config/bspwm/bspwmrc
 
 # Inform finished installation
