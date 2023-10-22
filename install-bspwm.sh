@@ -1,67 +1,50 @@
 #!/bin/bash
 
 # This script was made by Secret Firefox.
-# The purpose of it is to install BSPWM on Devuan.
-# It should also work for other apt-based distributions.
-# Some values need to be changed manually.
+# This will install Bspwm on your existing Devuan install with some customization.
+# It tries, however, to stay close to the bspwm defaults.
+# This should work on other apt-based distros, but it is not guaranteed.
 # Enjoy!
 
-# Install bspwm, sxhkd and dmenu (suckless tools)
+# Install bspwm, sxhkd, and dmenu (suckless tools)
 
 sudo apt install bspwm sxhkd dmenu -y 
 
 # Install the screenshot, wallpaper selector, and appearance utilities
 
-sudo apt install maim xclip feh lxappearance -y
+sudo apt install maim xclip feh lxappearance -y 
+
+# Install the terminal emulator (xfce4-terminal for transparency support)
+
+sudo apt install xfce4-terminal -y 
+
+# Install a file manager, a file extractor, and components for functionality inside the file manager
+
+#sudo apt install thunar thunar-archive-plugin xarchiver -y
 
 # Install picom for compositing functionality
 
-sudo apt install picom -y
+sudo apt install picom -y 
 
-# Configure bspwm and sxhkd
+# Configure bspwm and sxhkd; give it the necessary permissions and copy provided files to their places
 
-install -Dm755 /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
+cp -r bspwmrc ~/.config/bspwm/
+cp -r sxhkdrc ~/.config/sxhkd/
+chmod 755 ~/.config/bspwm/bspwmrc
+chmod 644 ~/.config/bspwm/sxhkdrc
 
-install -Dm644 /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/sxhkd/sxhkdrc
-
-# Copy the provided screenshooting script to sxhkd directory
+# Copy the provided screenshooting script to the sxhkd directory
 
 cp -r print-screen.sh ~/.config/sxhkd/print-screen.sh
 
-# Generate a ~/.xinitrc for working dbus through startx
+# Generate a ~/.xinitrc for working dbus through startx 
 
-echo "dbus-launch --exit-with-session bspwm" >> ~/.xinitrc
-
-# Inform sxhkdrc to run the print-screen.sh script whenever PrintSc is pressed.
-# Add a line for Print, then in another line hit tab, and then write:
-# bash ~/.config/sxhkd/print-screen.sh
-# to assign the script to be run whenever print is pressed. 
-# You may want to specify the terminal emulator (xfce4-terminal) here, in place 
-# of urxvt.
-# You may also want to change dmenu key combination to Super + d rather than 
-# Super + @space
-
-sudo nano ~/.config/sxhkd/sxhkdrc
-
-# Add numlockx & to start the numpad every login
-# Add pipewire, pipewire-pulse, and wireplumber to start every login
-# Add picom to autostart every login
-# Stop the cursor from resetting every login to X's default cursor
-# Fix the proportion of window distributions from 0.52 to 0.50 (manually)
-# Specify the gnome-polkit to run every login (assumes Xfce tasksel install)
-
-echo "numlockx &" >> ~/.config/bspwm/bspwmrc
-#echo "pipewire &" >> ~/.config/bspwm/bspwmrc
-#echo "pipewire-pulse &" >> ~/.config/bspwm/bspwmrc
-#echo "wireplumber &" >> ~/.config/bspwm/bspwmrc
-echo "picom -f -I 0.06 -O 0.06 &" >> ~/.config/bspwm/bspwmrc
-echo "xsetroot -cursor_name left_ptr &" >> ~/.config/bspwm/bspwmrc
-echo "/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &" >> ~/.config/bspwm/bspwmrc
-sudo nano ~/.config/bspwm/bspwmrc
+sudo echo "exec bspwm" >> ~/.xinitrc
 
 # Inform finished installation
 
-echo "Installation complete. Reboot, login with your credentials then do startx."
+echo "Installation complete! Reboot, login with your credentials then do startx!"
 
+ 
 
 
