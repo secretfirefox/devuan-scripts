@@ -27,7 +27,7 @@ sudo apt install xfce4-terminal -y
 
 sudo apt install picom -y 
 
-# Configure bspwm and sxhkd; give it the necessary permissions and copy provided files to their places
+# Create the directories for bspwm and sxhkd; give it the necessary permissions and copy provided files to their places
 
 mkdir ~/.config/bspwm
 mkdir ~/.config/sxhkd
