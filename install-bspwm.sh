@@ -19,6 +19,7 @@ sudo apt install maim xclip feh lxappearance -y
 sudo apt install xfce4-terminal -y 
 
 # Install a file manager, a file extractor, and components for functionality inside the file manager
+# This is optional if the ones you are using already do not suit Bspwm, or unnecessary if you are already on Xfce
 
 #sudo apt install thunar thunar-archive-plugin xarchiver -y
 
