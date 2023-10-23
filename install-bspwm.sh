@@ -28,10 +28,12 @@ sudo apt install picom -y
 
 # Configure bspwm and sxhkd; give it the necessary permissions and copy provided files to their places
 
+mkdir ~/.config/bspwm
+mkdir ~/.config/sxhkd
 cp -r bspwmrc ~/.config/bspwm/
 cp -r sxhkdrc ~/.config/sxhkd/
 chmod 755 ~/.config/bspwm/bspwmrc
-chmod 644 ~/.config/bspwm/sxhkdrc
+chmod 644 ~/.config/sxhkd/sxhkdrc
 
 # Copy the provided screenshooting script to the sxhkd directory
 
